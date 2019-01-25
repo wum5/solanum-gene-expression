@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 # This is my custome script to parse my own data 
 # RNA-seq data collection from 4 tomato species
 
@@ -24,6 +26,7 @@ Slyc_stem <- rowMeans(Slyc_TPM[ , c("Slyc_stem1", "Slyc_stem2")])
 Slyc_seed <- rowMeans(Slyc_TPM[ , c("Slyc_seed1", "Slyc_seed2")])
 
 Slyc_vegeALL <- data.frame(Slyc_leaf, Slyc_vege, Slyc_root, Slyc_stem, Slyc_seed)
+colnames(Slyc_vegeALL) <- c("leaf", "vege_meristem", "root", "stem", "seed")
 Slyc_vegeALL <- add_rownames(Slyc_vegeALL, "Genes")
 
 # prepare reproductive dataset
@@ -35,6 +38,7 @@ Slyc_styl <- rowMeans(Slyc_TPM[ , c("Slyc_stym1", "Slyc_stym2", "Slyc_stym3",
                                     "Slyc_styp1", "Slyc_styp2", "Slyc_styp3")])
 
 Slyc_reprALL <- data.frame(Slyc_flor, Slyc_ovul, Slyc_poll, Slyc_styl)
+colnames(Slyc_reprALL) <- c("floral_meristem", "ovule", "pollen", "style")
 Slyc_reprALL <- add_rownames(Slyc_reprALL, "Genes")
 
 write.table(Slyc_vegeALL, file = "../output/Slyc_vege_expr.txt", quote = F, row.names = F)
@@ -61,6 +65,7 @@ Spen_seed <- rowMeans(Spen_TPM[ , c("Spen_seed1", "Spen_seed2")])
 Spen_vege <- rowMeans(Spen_TPM[ , c("Spen_vege1", "Spen_vege2", "Spen_vege3")])
 
 Spen_vegeALL <- data.frame(Spen_leaf, Spen_root, Spen_stem, Spen_seed, Spen_vege)
+colnames(Spen_vegeALL) <- c("leaf", "root", "stem", "seed", "vege_meristem")
 Spen_vegeALL <- add_rownames(Spen_vegeALL, "Genes")
 
 
@@ -73,6 +78,7 @@ Spen_styl <- rowMeans(Spen_TPM[ , c("Spen_stym1", "Spen_stym2", "Spen_stym3",
                                     "Spen_styp1", "Spen_styp2", "Spen_styp3")])
 
 Spen_reprALL <- data.frame(Spen_flor, Spen_ovul, Spen_poll, Spen_styl)
+colnames(Spen_reprALL) <- c("floral_meristem", "ovule", "pollen", "style")
 Spen_reprALL <- add_rownames(Spen_reprALL, "Genes")
 
 write.table(Spen_vegeALL, file = "../output/Spen_vege_expr.txt", quote = F, row.names = F)
@@ -101,6 +107,7 @@ Shab_seed <- rowMeans(Shab_TPM[ , c("Shab_seed1", "Shab_seed2")])
 Shab_vege <- rowMeans(Shab_TPM[ , c("Shab_vege1", "Shab_vege2", "Shab_vege3")])
 
 Shab_vegeALL <- data.frame(Shab_leaf, Shab_root, Shab_stem, Shab_seed, Shab_vege)
+colnames(Shab_vegeALL) <- c("leaf", "root", "stem", "seed", "vege_meristem")
 Shab_vegeALL <- add_rownames(Shab_vegeALL, "Genes")
 
 # prepare reproductive dataset
@@ -109,6 +116,7 @@ Shab_poll <- rowMeans(Shab_TPM[ , c("Shab_poll1", "Shab_poll2")])
 Shab_styl <- rowMeans(Shab_TPM[ , c("Shab_styl1", "Shab_styl2", "Shab_styl3")])
 
 Shab_reprALL <- data.frame(Shab_ovul, Shab_poll, Shab_styl)
+colnames(Shab_reprALL) <- c("ovule", "pollen", "style")
 Shab_reprALL <- add_rownames(Shab_reprALL, "Genes")
 
 write.table(Shab_vegeALL, file = "../output/Shab_vege_expr.txt", quote = F, row.names = F)
@@ -132,6 +140,7 @@ Spim_vege <- rowMeans(Spim_TPM[ , c("Spim_vege1", "Spim_vege2", "Spim_vege3", "S
 Spim_seed <- Spim_TPM$Spim_seed1
 
 Spim_vegeALL <- data.frame(Spim_leaf, Spim_coty, Spim_hypo, Spim_root, Spim_vege, Spim_seed)
+colnames(Shab_vegeALL) <- c("leaf", "coty", "hypo", "root", "vege_meristem", "seed")
 Spim_vegeALL <- add_rownames(Spim_vegeALL, "Genes")
 
 # prepare reproductive dataset
@@ -140,10 +149,10 @@ Spim_flop <- rowMeans(Spim_TPM[ , c("Spim_flor_p1", "Spim_flor_p2", "Spim_flor_p
 Spim_ovul <- rowMeans(Spim_TPM[ , c("Spim_ovul1", "Spim_ovul2")])
 
 Spim_reprALL <- data.frame(Spim_flom, Spim_flop, Spim_ovul)
+colnames(Spim_reprALL) <- c("floral_meristem", "mature_flower", "ovule")
 Spim_reprALL <- add_rownames(Spim_reprALL, "Genes")
 
 write.table(Spim_vegeALL, file = "../output/Spim_vege_expr.txt", quote = F, row.names = F)
 write.table(Spim_reprALL, file = "../output/Spim_repr_expr.txt", quote = F, row.names = F)
 rm(list = ls(pattern = "Spim")) 
-
 

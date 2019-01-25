@@ -1,7 +1,8 @@
-# a function to generate venn diagram of 4 categories of genes
 library(VennDiagram)
 
-venn_diag_to_4 <- function(group1, group2, group3, group4){
+# a function to generate venn diagram of 4 categories of genes
+# and return the ones interescted by at least 3 groups
+venn_diag_3by4 <- function(group1, group2, group3, group4){
     x1 <- group1
     x2 <- group2
     x3 <- group3
@@ -44,5 +45,16 @@ venn_diag_to_4 <- function(group1, group2, group3, group4){
     
     geneSets <- Reduce(union, list(x123,x234,x124,x134,x1234))
     return(geneSets)
+}
+
+
+# a function to return the genes interescted by at least 2 out of 3 groups
+intersct_2by3 <- function(group1, group2, group3){
+    ints12 <- intersect(group1,group2)
+    ints13 <- intersect(group1,group3)
+    ints23 <- intersect(group2,group3)
+    ints123 <- Reduce(intersect, list(group1,group2,group3))
+    ints2by3 <- Reduce(union, list(ints12,ints13,ints23,ints123))
+    return(ints2by3)
 }
 
