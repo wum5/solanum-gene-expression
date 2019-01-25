@@ -1,3 +1,8 @@
+#!/usr/bin/env Rscript
+
+# This is my custome script to plot the dN/dS distribution of genes 
+# in different categories based on their expression profiles
+
 library(ggplot2)
 
 # read PAML output (i.e. dN/dS data)
